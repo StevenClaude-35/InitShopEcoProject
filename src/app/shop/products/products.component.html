@@ -31,7 +31,7 @@
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
                                 <h6 class="product-price">{{product.price}}</h6>
-                                <button class="pro-btn" data-toggle="modal" data-target="#add-to-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                                <button class="pro-btn" data-toggle="modal" [attr.data-target]="'#add-to-cart-'+product.idProduct"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
                             </div>
                         </div>
                     </div>
@@ -43,3 +43,4 @@
   </div>
   
   <app-modal-quick-view [products]="products"></app-modal-quick-view>
+  <app-modal-add-to-cart [products]="products"></app-modal-add-to-cart>
