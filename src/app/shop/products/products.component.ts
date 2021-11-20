@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Products } from 'src/app/model/products';
+import { CartService } from 'src/app/services/cart.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { environment } from 'src/environments/environment';
 
@@ -13,7 +14,7 @@ export class ProductsComponent implements OnInit {
   products: Products[]=[];
   prefUrlImage=`${environment.PrefUrlImage}`;
   prodSub!: Subscription;
-  constructor(private prodService:ProductsService) { }
+  constructor(private prodService:ProductsService,private cartService:CartService) { }
 
 
   ngOnInit(): void {
@@ -27,5 +28,12 @@ export class ProductsComponent implements OnInit {
   ngOnDestroy(): void {
     this.prodSub.unsubscribe();
   }
+  addToCart(product:Products):void{
+    this.cartService.addProductToCart(product);
+   }
+ 
+   deleteFromCart(product:Products):void{
+     this.cartService.deleteFromCart(product);
+   }
 
 }
