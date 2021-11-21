@@ -11,6 +11,8 @@ import { Result } from '../model/result';
 export class ProductsService {
 
   products:Products[]=[];
+  numberOfProductByPage=6;
+
   prodSubject=new Subject<Products[]>();
   constructor(private http:HttpClient) { 
     this.getproductfromserver()
@@ -33,5 +35,22 @@ export class ProductsService {
         }
       }
     )
+  }
+  getProductById(id:number):Products{
+    const product=this.products.find(element=>element.idProduct==id);
+    if(product){
+      return product;
+    }
+    return null;
+  }
+
+  getProductByPage(numberpage:number):Products[]{
+    const numberOfPage=this.products.length/this.numberOfProductByPage;
+    if(numberpage > 0 || numberpage < numberOfPage  ){
+     const prodResult=this.products.slice(numberpage*6,(numberpage+1)*6);
+     return prodResult;
+    }
+    return null;
+
   }
 }

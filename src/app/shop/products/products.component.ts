@@ -14,13 +14,15 @@ export class ProductsComponent implements OnInit {
   products: Products[]=[];
   prefUrlImage=`${environment.PrefUrlImage}`;
   prodSub!: Subscription;
+  currentPage=0;
+  pages=[1,2,3,4,5,6,7];
   constructor(private prodService:ProductsService,private cartService:CartService) { }
 
 
   ngOnInit(): void {
     this.prodSub=this.prodService.prodSubject.subscribe(
       (data:any)=>{
-       this.products=data;
+       this.products=this.prodService.getProductByPage(this.currentPage)//data;
       }
     );
     this.prodService.emitProducts();
@@ -34,6 +36,32 @@ export class ProductsComponent implements OnInit {
  
    deleteFromCart(product:Products):void{
      this.cartService.deleteFromCart(product);
+   }
+
+   changePage(numberPage:number):void{
+     const prod=this.prodService.getProductByPage(numberPage);
+     if(prod){
+       this.products=prod;
+       this.currentPage=numberPage;
+     }
+   }
+
+   nextPage():void{
+     const newCurrentPage=this.currentPage+1;
+     const prod=this.prodService.getProductByPage(newCurrentPage);
+     if(prod){
+       this.products=prod;
+       this.currentPage=newCurrentPage;
+     }
+   }
+
+   prevPage():void{
+    const newCurrentPage=this.currentPage-1;
+    const prod=this.prodService.getProductByPage(newCurrentPage);
+    if(prod){
+      this.products=prod;
+      this.currentPage=newCurrentPage;
+    }
    }
 
 }
