@@ -8,6 +8,7 @@ const routes:Routes=[
   {path:'shop',component:ShopComponent},
   {path:'cart',component:CartComponent},
   {path:'single-product/:id',component:SingleProductComponent},
+  {path:'category/:id',component:CategoryComponent},
   {path:'contact',component:ContactComponent},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
@@ -29,6 +30,7 @@ import { CartComponent } from './shop/cart/cart.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ModalAddToCartComponent } from './shop/modal-add-to-cart/modal-add-to-cart.component';
 import { ModalQuickViewComponent } from './shop/modal-quick-view/modal-quick-view.component';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { ModalQuickViewComponent } from './shop/modal-quick-view/modal-quick-vie
     NotFoundComponent,
     HeaderComponent,
     ModalAddToCartComponent,
-    ModalQuickViewComponent
+    ModalQuickViewComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
