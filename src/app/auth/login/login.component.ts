@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Users } from 'src/app/model/users';
+import { CartService } from 'src/app/services/cart.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   loginForm:FormGroup;
   errorMessage;
   constructor(private userService:UsersService,private fb:FormBuilder,
-    private router:Router) { }
+    private router:Router,private cartService:CartService) { }
 
   ngOnInit(): void {
     this.initFormLogin();
@@ -34,7 +35,12 @@ export class LoginComponent implements OnInit {
 
     this.userService.authentifier(newUser).then(
       (data)=>{
-        this.router.navigate(['/shop']);
+        const cart=this.cartService.cart;
+        if(cart.length){
+          this.router.navigate(['/checkout']);
+        }else{
+          this.router.navigate(['/shop']);
+        }
       }
     ).catch(
       (error)=>{

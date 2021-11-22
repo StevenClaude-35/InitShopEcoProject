@@ -7,6 +7,8 @@ export const environment = {
   API:"http://localhost/ecommerce/Backend/api/",
   API_KEY:"API_KEY=adsffsdfds6b-6727-46f4-8bee-2c6ce6293e41",
   PrefUrlImage:"http://localhost/ecommerce/backend/images/products/",
+  ID_CLIENT_PAYPAL:'AfoIYVcCSk9MsJ-Tixj4sjcwTA97czVdb6H749v1tgIXH9avofi5oGlByYcCp6E_65UARbg8T9_-VjaF',
+  CURRENCY:'EUR'
 
 };
 /*

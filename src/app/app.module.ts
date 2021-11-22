@@ -10,6 +10,7 @@ const routes:Routes=[
   {path:'single-product/:id',component:SingleProductComponent},
   {path:'category/:id',component:CategoryComponent},
   {path:'contact',component:ContactComponent},
+  {path:'checkout',canActivate:[AuthGuard],component:CheckoutComponent},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
   {path:'notfound',component:NotFoundComponent},
@@ -32,6 +33,10 @@ import { ModalAddToCartComponent } from './shop/modal-add-to-cart/modal-add-to-c
 import { ModalQuickViewComponent } from './shop/modal-quick-view/modal-quick-view.component';
 import { CategoryComponent } from './category/category.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CheckoutComponent } from './shop/shop/checkout/checkout.component';
+import { AuthGuard } from './services/auth.guard';
+import { ButtonPaypalComponent } from './shop/shop/button-paypal/button-paypal.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @NgModule({
   declarations: [
@@ -50,14 +55,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     ModalAddToCartComponent,
     ModalQuickViewComponent,
-    CategoryComponent
+    CategoryComponent,
+    CheckoutComponent,
+    ButtonPaypalComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxPayPalModule
   ],
   providers: [],
   bootstrap: [AppComponent]
