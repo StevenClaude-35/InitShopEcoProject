@@ -31,6 +31,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ModalAddToCartComponent } from './shop/modal-add-to-cart/modal-add-to-cart.component';
 import { ModalQuickViewComponent } from './shop/modal-quick-view/modal-quick-view.component';
 import { CategoryComponent } from './category/category.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,9 @@ import { CategoryComponent } from './category/category.component';
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
